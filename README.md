@@ -7,7 +7,7 @@ This small Microsoft Fabric sample helps you explore that question with **fictio
 
 **20 projects. 347 tasks. 1,041 cost records. 116 zones.**
 
-No real customer data. No credentials. No tenant IDs. Just a fixed sample you can try in your own environment.
+All data is synthetic, and project names are made up. Any resemblance to real projects is purely coincidental.
 
 ## The story
 
