@@ -1,0 +1,12 @@
+relationship sample_9156226993428923862
+	fromColumn: tasks.project_id
+	toColumn: projects.project_id
+
+relationship sample_4895659643864457678
+	fromColumn: costs.task_id
+	toColumn: tasks.task_id
+
+relationship sample_666763674139465479
+	fromColumn: tasks.location_id
+	toColumn: locations.location_id
+

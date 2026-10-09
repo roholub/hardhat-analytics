@@ -1,0 +1,50 @@
+/// One row per project zone with 3D coordinates (x, y, z). Enables spatial mapping and digital twin visualization.
+table locations
+
+	column location_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: location_id
+
+	column project_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: project_id
+
+	column zone_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: zone_name
+
+		changedProperty = IsHidden
+
+	column x_coord
+		dataType: double
+		summarizeBy: none
+		sourceColumn: x_coord
+
+		changedProperty = IsHidden
+
+	column y_coord
+		dataType: double
+		summarizeBy: none
+		sourceColumn: y_coord
+
+		changedProperty = IsHidden
+
+	column z_coord
+		dataType: double
+		summarizeBy: none
+		sourceColumn: z_coord
+
+		changedProperty = IsHidden
+
+	partition locations = entity
+		mode: directLake
+		source
+			entityName: locations
+			schemaName: dbo
+			expressionSource: 'DirectLake - The_Jobsite_LH'
+
+	changedProperty = Description
+

@@ -1,0 +1,68 @@
+/// One row per scheduled task, arranged in a P6-style dependency chain where each task depends on the previous one. Captures schedule slippage that cascades from early to late tasks.
+table tasks
+
+	column task_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: task_id
+
+		changedProperty = IsHidden
+
+	column project_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: project_id
+
+		changedProperty = IsHidden
+
+	column task_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: task_name
+
+	column planned_start_date
+		dataType: dateTime
+		formatString: General Date
+		summarizeBy: none
+		sourceColumn: planned_start_date
+
+	column planned_end_date
+		dataType: dateTime
+		formatString: General Date
+		summarizeBy: none
+		sourceColumn: planned_end_date
+
+	column actual_end_date
+		dataType: dateTime
+		formatString: General Date
+		summarizeBy: none
+		sourceColumn: actual_end_date
+
+	column dependency_task_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: dependency_task_id
+
+		changedProperty = IsHidden
+
+	column task_status
+		dataType: string
+		summarizeBy: none
+		sourceColumn: task_status
+
+	column location_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: location_id
+
+		changedProperty = IsHidden
+
+	partition tasks = entity
+		mode: directLake
+		source
+			entityName: tasks
+			schemaName: dbo
+			expressionSource: 'DirectLake - The_Jobsite_LH'
+
+	changedProperty = Description
+

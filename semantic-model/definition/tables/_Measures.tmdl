@@ -1,0 +1,71 @@
+table _Measures
+	measure 'Total Projects' = COUNTROWS ( projects )
+		formatString: 0
+	measure 'Total Tasks' = COUNTROWS ( tasks )
+		formatString: 0
+	measure 'Total Planned Cost' = SUM ( costs[planned_cost] )
+	measure 'Total Actual Cost' = SUM ( costs[actual_cost] )
+		formatString: 0
+	measure 'Total Cost Overrun' = [Total Actual Cost] - [Total Planned Cost]
+		formatString: 0
+	measure 'Cost Overrun %' = DIVIDE ( [Total Cost Overrun], [Total Planned Cost] )
+		formatString: 0.00%
+	measure 'Delayed Project Count' = CALCULATE ( [Total Projects], projects[status] = "Delayed" )
+		formatString: 0
+	measure 'At Risk Project Count' = CALCULATE ( [Total Projects], projects[status] = "At Risk" )
+		formatString: 0
+	measure 'On Track Project Count' = CALCULATE ( [Total Projects], projects[status] = "On Track" )
+		formatString: 0
+	measure 'Outlier Project Count' = CALCULATE ( [Total Projects], projects[is_outlier] = TRUE() )
+		formatString: 0
+	measure 'Avg Risk Score' = AVERAGE ( projects[risk_score] )
+	measure 'Avg Project Delay Days' =
+			
+			AVERAGEX (
+			    FILTER ( projects, NOT ISBLANK ( projects[actual_end_date] ) ),
+			    DATEDIFF (
+			        projects[planned_end_date],
+			        projects[actual_end_date],
+			        DAY
+			    )
+			)
+		formatString: 0.0
+	measure 'Max Project Delay Days' =
+			
+			MAXX (
+			    FILTER ( projects, NOT ISBLANK ( projects[actual_end_date] ) ),
+			    DATEDIFF (
+			        projects[planned_end_date],
+			        projects[actual_end_date],
+			        DAY
+			    )
+			)
+		formatString: 0
+	measure 'Tasks Without Recorded Finish' =
+			
+			CALCULATE (
+			    COUNTROWS ( tasks ),
+			    ISBLANK ( tasks[actual_end_date] )
+			)
+		formatString: 0
+	measure 'Tasks With Recorded Finish' =
+			
+			CALCULATE (
+			    COUNTROWS ( tasks ),
+			    NOT ISBLANK ( tasks[actual_end_date] )
+			)
+		formatString: 0
+	measure 'Delayed Task Count' = CALCULATE ( COUNTROWS ( tasks ), tasks[task_status] = "Delayed" )
+		formatString: 0
+
+	column Value
+		isHidden
+		formatString: 0
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+	partition _Measures = calculated
+		mode: import
+		source = {BLANK()}
+

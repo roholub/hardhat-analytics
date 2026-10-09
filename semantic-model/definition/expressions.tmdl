@@ -1,0 +1,5 @@
+expression 'DirectLake - The_Jobsite_LH' =
+		let
+		    Source = Sql.Database("YOUR_SQL_ENDPOINT", "YOUR_SQL_DATABASE_ID")
+		in
+		    Source

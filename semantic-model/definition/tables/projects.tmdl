@@ -1,0 +1,72 @@
+/// One row per construction project. Anchors every portfolio-level analytical question about status, risk, schedule, and cost.
+table projects
+
+	column project_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: project_id
+
+		changedProperty = IsHidden
+
+	column project_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: project_name
+
+	column project_type
+		dataType: string
+		summarizeBy: none
+		sourceColumn: project_type
+
+	column location
+		dataType: string
+		summarizeBy: none
+		sourceColumn: location
+
+	column start_date
+		dataType: dateTime
+		formatString: General Date
+		summarizeBy: none
+		sourceColumn: start_date
+
+		changedProperty = IsHidden
+
+	column planned_end_date
+		dataType: dateTime
+		formatString: General Date
+		summarizeBy: none
+		sourceColumn: planned_end_date
+
+	column actual_end_date
+		dataType: dateTime
+		formatString: General Date
+		summarizeBy: none
+		sourceColumn: actual_end_date
+
+	column status
+		dataType: string
+		summarizeBy: none
+		sourceColumn: status
+
+	column risk_score
+		dataType: double
+		summarizeBy: none
+		sourceColumn: risk_score
+
+	column is_outlier
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		summarizeBy: none
+		sourceColumn: is_outlier
+
+		changedProperty = IsHidden
+
+	partition projects = entity
+		mode: directLake
+		source
+			entityName: projects
+			schemaName: dbo
+			expressionSource: 'DirectLake - The_Jobsite_LH'
+
+	changedProperty = Description
+

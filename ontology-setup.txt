@@ -1,0 +1,74 @@
+OPTIONAL: ONTOLOGY BUSINESS CONTEXT
+
+Requirement: Microsoft Fabric Ontology (new experience) is a preview feature.
+Availability and permissions depend on your tenant and capacity. Follow current
+Microsoft documentation; this sample does not claim general availability.
+https://learn.microsoft.com/en-us/fabric/iq/ontology/overview
+
+Create a NEW ontology item in your sample workspace. Use these five concepts:
+
+Entity          Backing table       Key
+Project         projects            project_id
+Task            task_evidence       task_id
+Zone            locations           location_id
+CostRecord      costs               cost_id
+ProjectReview   project_reviews     review_id
+
+Bind the entity properties to the matching column names and data types.
+Describe ProjectReview as derived historical evidence, not a human approval.
+Describe completion_evidence as RecordedFinish/NoRecordedFinish.
+Explain that risk_score and status thresholds are synthetic.
+For name searches, use task_name_search with lowercase input, or LOWER(task_name).
+
+RELATIONSHIPS
+TaskBelongsToProject: Task.project_id -> Project.project_id.
+TaskLocatedInZone: Task.location_id -> Zone.location_id.
+CostRecordForTask: CostRecord.task_id -> Task.task_id.
+ZoneBelongsToProject: Zone.project_id -> Project.project_id.
+ReviewAssessesProject: ProjectReview.project_id -> Project.project_id.
+TaskDependsOnTask: Task -> Task, using mapping table task_dependencies:
+  Origin Task.task_id maps to successor_task_id.
+  Target Task.task_id maps to predecessor_task_id.
+
+Use the relationship configuration UI to select origin/target properties;
+enable the mapping-table option only for TaskDependsOnTask.
+Save the bindings and inspect the source mappings. A Task-to-Task loop in the
+model canvas describes the relationship type, not a task depending on itself.
+The canvas is a schema map, not proof of materialized graph instances.
+
+Do not activate every physical filtering relationship indiscriminately.
+Avoid ambiguous filter paths. Source-native SQL is sufficient for these
+questions; graph materialization is not required by this replication sample.
+
+Agent guidance:
+Use only bound historical sample data. Explain source IDs and definitions.
+Aggregate cost records once. Distinguish recorded facts, review prioritization
+and unestablished cause. Missing finish dates do not imply active work.
+Keep responses concise; show the query on request. Never invent subcontractor,
+margin, causal, approval or live-readiness evidence. Evaluate results yourself.
+
+MAIN QUESTION
+For Meadowbrook Apartments PRJ-0001, does the zone with the most tasks labeled
+Delayed also have the largest recorded cost overrun? Connect project, zone,
+task and cost records. Aggregate each cost record once. Return zones with
+delayed-task count and cost overrun amount, the three largest task overruns
+in the highest-overrun zone, and a fact-based starting point for a review.
+Do not infer causation or current operational readiness.
+
+Expected zones, descending cost overrun:
+  Floor 2: 3 Delayed tasks; 570,931.42
+  Floor 3: 1 Delayed task; 483,643.36
+  Basement: 1 Delayed task; 391,303.68
+  Floor 1: 0 Delayed tasks; 271,515.19
+Floor 2 leaders: Painting 197,787.95; Flooring 128,630.93; Glazing 124,641.76.
+Floor 2 total includes all five activities, not only those three.
+
+FOLLOW-UP
+For Concrete Pour task PRJ-0001-T005, show its zone and predecessor name/ID,
+plus the predecessor's zone and stored status.
+Expected: Floor 2 -> Structural Steel PRJ-0001-T004 -> Basement, On Track.
+On Track does not establish predecessor completion.
+
+These examples demonstrate connected evidence and reusable definitions.
+They are not a controlled comparison proving superiority over a semantic
+model or SQL, and do not demonstrate rules/actions or predictive scheduling.

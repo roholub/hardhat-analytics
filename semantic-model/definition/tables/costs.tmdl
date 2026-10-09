@@ -1,0 +1,48 @@
+/// One row per task and cost category (labor, materials, equipment). ERP-style cost breakdown where actual costs rise with task delays.
+table costs
+
+	column cost_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: cost_id
+
+		changedProperty = IsHidden
+
+	column project_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: project_id
+
+		changedProperty = IsHidden
+
+	column task_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: task_id
+
+		changedProperty = IsHidden
+
+	column cost_category
+		dataType: string
+		summarizeBy: none
+		sourceColumn: cost_category
+
+	column planned_cost
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: planned_cost
+
+	column actual_cost
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: actual_cost
+
+	partition costs = entity
+		mode: directLake
+		source
+			entityName: costs
+			schemaName: dbo
+			expressionSource: 'DirectLake - The_Jobsite_LH'
+
+	changedProperty = Description
+

@@ -1,0 +1,21 @@
+project_id,project_name,project_type,location,start_date,planned_end_date,actual_end_date,status,risk_score,is_outlier
+PRJ-0001,Meadowbrook Apartments,healthcare,"Boise, ID",2023-01-13,2024-03-09,2024-08-20,Delayed,100.0,true
+PRJ-0002,Ironwood Residences,healthcare,"Kansas City, MO",2023-01-19,2024-04-05,2024-11-06,Delayed,100.0,true
+PRJ-0003,Meadowbrook Medical Center,infrastructure,"Charlotte, NC",2023-07-21,2024-05-29,2024-07-25,At Risk,43.6,false
+PRJ-0004,Gateway Medical Center,healthcare,"Madison, WI",2023-08-07,2024-11-16,,On Track,36.9,false
+PRJ-0005,Northgate Office Tower,residential,"Portland, OR",2023-10-24,2025-01-04,2025-04-13,Delayed,78.3,false
+PRJ-0006,Summit Business Park,infrastructure,"Charlotte, NC",2023-04-22,2024-04-08,2024-06-21,At Risk,56.7,false
+PRJ-0007,Summit Apartments,infrastructure,"Phoenix, AZ",2023-08-28,2024-03-24,,On Track,21.9,false
+PRJ-0008,Northgate Logistics Hub,infrastructure,"Austin, TX",2023-05-24,2024-07-01,,On Track,28.5,false
+PRJ-0009,Northgate Apartments,commercial,"Austin, TX",2023-01-25,2023-11-12,2024-01-01,At Risk,37.9,false
+PRJ-0010,Brookfield Apartments,healthcare,"Seattle, WA",2023-09-06,2024-03-09,2024-06-04,Delayed,44.3,false
+PRJ-0011,Horizon Community Center,commercial,"Salt Lake City, UT",2023-07-07,2024-01-23,2024-04-11,At Risk,41.8,false
+PRJ-0012,Meadowbrook Medical Center,commercial,"Salt Lake City, UT",2023-04-03,2024-02-29,,On Track,33.2,false
+PRJ-0013,Pinnacle Business Park,healthcare,"Raleigh, NC",2023-01-18,2024-03-10,2024-07-04,Delayed,84.4,false
+PRJ-0014,Summit Logistics Hub,healthcare,"Charlotte, NC",2023-05-08,2024-02-09,,On Track,18.6,false
+PRJ-0015,Meadowbrook Medical Center,infrastructure,"Salt Lake City, UT",2023-08-07,2024-03-12,2024-04-24,At Risk,25.8,false
+PRJ-0016,Lakeview Medical Center,residential,"Portland, OR",2023-07-17,2024-12-26,,On Track,44.1,false
+PRJ-0017,Cornerstone Community Center,infrastructure,"Denver, CO",2023-03-22,2023-11-03,2024-01-26,Delayed,47.3,false
+PRJ-0018,Summit Business Park,residential,"Kansas City, MO",2023-10-18,2024-05-17,2024-08-27,Delayed,54.6,false
+PRJ-0019,Pinnacle Residences,commercial,"Columbus, OH",2023-02-08,2024-04-15,2024-07-26,Delayed,79.4,false
+PRJ-0020,Northgate Office Tower,infrastructure,"Austin, TX",2023-04-18,2024-06-10,2024-08-12,At Risk,58.4,false

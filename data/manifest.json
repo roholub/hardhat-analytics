@@ -1,0 +1,289 @@
+{
+  "description": "Fixed historical synthetic construction portfolio; no real customer records.",
+  "null_encoding": "Empty CSV field",
+  "tables": {
+    "projects": {
+      "rows": 20,
+      "columns": [
+        {
+          "name": "project_id",
+          "type": "varchar"
+        },
+        {
+          "name": "project_name",
+          "type": "varchar"
+        },
+        {
+          "name": "project_type",
+          "type": "varchar"
+        },
+        {
+          "name": "location",
+          "type": "varchar"
+        },
+        {
+          "name": "start_date",
+          "type": "date"
+        },
+        {
+          "name": "planned_end_date",
+          "type": "date"
+        },
+        {
+          "name": "actual_end_date",
+          "type": "date"
+        },
+        {
+          "name": "status",
+          "type": "varchar"
+        },
+        {
+          "name": "risk_score",
+          "type": "float"
+        },
+        {
+          "name": "is_outlier",
+          "type": "bit"
+        }
+      ]
+    },
+    "tasks": {
+      "rows": 347,
+      "columns": [
+        {
+          "name": "task_id",
+          "type": "varchar"
+        },
+        {
+          "name": "project_id",
+          "type": "varchar"
+        },
+        {
+          "name": "task_name",
+          "type": "varchar"
+        },
+        {
+          "name": "planned_start_date",
+          "type": "date"
+        },
+        {
+          "name": "planned_end_date",
+          "type": "date"
+        },
+        {
+          "name": "actual_end_date",
+          "type": "date"
+        },
+        {
+          "name": "dependency_task_id",
+          "type": "varchar"
+        },
+        {
+          "name": "task_status",
+          "type": "varchar"
+        },
+        {
+          "name": "location_id",
+          "type": "varchar"
+        }
+      ]
+    },
+    "costs": {
+      "rows": 1041,
+      "columns": [
+        {
+          "name": "cost_id",
+          "type": "varchar"
+        },
+        {
+          "name": "project_id",
+          "type": "varchar"
+        },
+        {
+          "name": "task_id",
+          "type": "varchar"
+        },
+        {
+          "name": "cost_category",
+          "type": "varchar"
+        },
+        {
+          "name": "planned_cost",
+          "type": "float"
+        },
+        {
+          "name": "actual_cost",
+          "type": "float"
+        }
+      ]
+    },
+    "locations": {
+      "rows": 116,
+      "columns": [
+        {
+          "name": "location_id",
+          "type": "varchar"
+        },
+        {
+          "name": "project_id",
+          "type": "varchar"
+        },
+        {
+          "name": "zone_name",
+          "type": "varchar"
+        },
+        {
+          "name": "x_coord",
+          "type": "float"
+        },
+        {
+          "name": "y_coord",
+          "type": "float"
+        },
+        {
+          "name": "z_coord",
+          "type": "float"
+        }
+      ]
+    },
+    "task_evidence": {
+      "rows": 347,
+      "columns": [
+        {
+          "name": "task_id",
+          "type": "varchar"
+        },
+        {
+          "name": "project_id",
+          "type": "varchar"
+        },
+        {
+          "name": "task_name",
+          "type": "varchar"
+        },
+        {
+          "name": "planned_start_date",
+          "type": "date"
+        },
+        {
+          "name": "planned_end_date",
+          "type": "date"
+        },
+        {
+          "name": "actual_end_date",
+          "type": "date"
+        },
+        {
+          "name": "dependency_task_id",
+          "type": "varchar"
+        },
+        {
+          "name": "task_status",
+          "type": "varchar"
+        },
+        {
+          "name": "location_id",
+          "type": "varchar"
+        },
+        {
+          "name": "completion_evidence",
+          "type": "varchar"
+        },
+        {
+          "name": "task_name_search",
+          "type": "varchar"
+        },
+        {
+          "name": "recorded_delay_days",
+          "type": "bigint"
+        }
+      ]
+    },
+    "task_dependencies": {
+      "rows": 327,
+      "columns": [
+        {
+          "name": "dependency_id",
+          "type": "varchar"
+        },
+        {
+          "name": "project_id",
+          "type": "varchar"
+        },
+        {
+          "name": "successor_task_id",
+          "type": "varchar"
+        },
+        {
+          "name": "predecessor_task_id",
+          "type": "varchar"
+        }
+      ]
+    },
+    "project_reviews": {
+      "rows": 20,
+      "columns": [
+        {
+          "name": "review_id",
+          "type": "varchar"
+        },
+        {
+          "name": "project_id",
+          "type": "varchar"
+        },
+        {
+          "name": "project_name",
+          "type": "varchar"
+        },
+        {
+          "name": "planned_cost_total",
+          "type": "decimal"
+        },
+        {
+          "name": "actual_cost_total",
+          "type": "decimal"
+        },
+        {
+          "name": "cost_overrun_amount",
+          "type": "decimal"
+        },
+        {
+          "name": "cost_overrun_ratio",
+          "type": "float"
+        },
+        {
+          "name": "recorded_project_delay_days",
+          "type": "bigint"
+        },
+        {
+          "name": "task_count",
+          "type": "bigint"
+        },
+        {
+          "name": "missing_finish_count",
+          "type": "bigint"
+        },
+        {
+          "name": "recorded_finish_count",
+          "type": "bigint"
+        },
+        {
+          "name": "delayed_status_count",
+          "type": "bigint"
+        },
+        {
+          "name": "attention_candidate",
+          "type": "bit"
+        },
+        {
+          "name": "attention_status",
+          "type": "varchar"
+        },
+        {
+          "name": "review_basis",
+          "type": "varchar"
+        }
+      ]
+    }
+  }
+}
